@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "ufldv2-culane-res18",
+      "task": "lane",
+      "description": "Ultra-Fast-Lane-Detection v2, ResNet18, CULane (MIT), LiteRT FP16, ego lanes only",
+      "dir": "ufldv2-03d57de9c140",
+      "parts": [
+        {"name": "part-00", "bytes": 45000000},
+        {"name": "part-01", "bytes": 45000000},
+        {"name": "part-02", "bytes": 45000000},
+        {"name": "part-03", "bytes": 45000000},
+        {"name": "part-04", "bytes": 45000000},
+        {"name": "part-05", "bytes": 853872}
+      ],
+      "bytes": 225853872,
+      "sha256": "03d57de9c140e1bf87ef6c0727e28f26baef80a0e1b11a355a2deb0d933a917a",
+      "input": {"shape": [1, 3, 320, 1600], "dtype": "float32", "layout": "NCHW", "color": "RGB",
+                "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225],
+                "crop": "bottom 60% of a 1640x590-aspect frame"},
+      "output": {"shape": [1, 45612], "dtype": "float32",
+                 "segments": [
+                   {"name": "loc_row", "offset": 0, "shape": [200, 72, 2]},
+                   {"name": "loc_col", "offset": 28800, "shape": [100, 81, 2]},
+                   {"name": "exist_row", "offset": 45000, "shape": [2, 72, 2]},
+                   {"name": "exist_col", "offset": 45288, "shape": [2, 81, 2]}
+                 ],
+                 "lanes": ["ego left", "ego right"],
+                 "row_anchors": "linspace(0.42, 1.0, 72) of the frame height"}
+    }
+  ]
+}
